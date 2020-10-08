@@ -2,7 +2,9 @@
 #include <cmath>
 using namespace std;
 int main() {
-    int i, x, y, z;
+    int i, x, k;
+    int y=0;
+    int z=0;
     const int n = 10;
     double min, max, a[n];
     double sum=0;
@@ -31,30 +33,36 @@ int main() {
     }
      cout<<endl;
      cout<<"sum = "<<sum<<endl;
-    double modmax = a[1];
-    for(i=0; i<n; i++) {
+    double modmax = a[0];
+    for(i=1; i<n; i++) {
         if((abs(a[i]) - abs(modmax))>0){
             modmax=a[i];
             y=i;
         }
     }
-    double modmin = a[1];
-    for(i=0; i<n; i++) {
+    double modmin = a[0];
+    for(i=1; i<n; i++) {
         if((abs(modmin)-abs(a[i]))>=0){
             modmin=a[i];
             z=i;
         }
     }
-    for(i=y; i<=z; i++){
+    for(i=y+1; i<=z-1; i++){
         pr=pr*a[i];
     }
     if(pr==1) {
-        for(i=z; i<=y; i++){
+        for(i=z+1; i<=y-1; i++){
             pr=pr*a[i];
         }
     }
     cout<<"proizvedenie = "<<pr<<endl;
-
+    for (k=1; k<=(n/2)-1; k++){
+        for (i=1; i<=n-3; i=i+2){
+            if(a[i]<a[i+2]){
+                swap(a[i], a[i+2]);
+            }
+        }
+    }
     for(i=0; i<n; i++) {
         cout<<a[i]<<" ";
     }
